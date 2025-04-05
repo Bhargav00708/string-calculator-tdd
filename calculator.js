@@ -2,24 +2,32 @@ function add(input) {
   if (input === "") {
     return 0; // Return 0 for an empty string
   }
-  let delimiter = /[\n,]/;
+
+  let delimiters = /[\n,]/;
+
   if (input.startsWith("//")) {
-    const parts = input.split("\n");
-    delimiter = new RegExp(`[${parts[0].slice(2)}]`);
-    input = parts[1];
+    const delimiterPart = input.match(/^\/\/(.+)\n/)[1];
+    input = input.split("\n")[1];
+
+    if (delimiterPart.startsWith("[")) {
+      // handle one or more [delimiters]
+      const matches = [...delimiterPart.matchAll(/\[(.*?)\]/g)];
+      const escaped = matches.map((m) =>
+        m[1].replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
+      );
+      delimiters = new RegExp(escaped.join("|"));
+    } else {
+      delimiters = new RegExp(`[${delimiterPart}]`);
+    }
   }
 
-  const numbers = input.split(delimiter).map(Number);
-  const negatives = numbers.filter((num) => num < 0);
-
-  if (negatives.length > 0) {
+  const numbers = input.split(delimiters).map(Number);
+  const negatives = numbers.filter((n) => n < 0);
+  if (negatives.length) {
     throw new Error(`negatives not allowed: ${negatives.join(",")}`);
   }
 
-  return numbers.reduce((sum, num) => {
-    if (num <= 1000) return sum + num;
-    return sum;
-  }, 0);
+  return numbers.reduce((sum, num) => (num <= 1000 ? sum + num : sum), 0);
 }
 
 module.exports = { add };
