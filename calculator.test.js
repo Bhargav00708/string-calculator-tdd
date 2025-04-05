@@ -24,3 +24,11 @@ test("should handle newlines as delimiters", () => {
 test("should support custom single-character delimiters", () => {
   expect(add("//;\n1;2")).toBe(3);
 });
+
+test("should throw an error when negative numbers are present", () => {
+  expect(() => add("1,-2,3")).toThrow("negatives not allowed: -2");
+});
+
+test("should list all negative numbers in the error", () => {
+  expect(() => add("1,-2,-5")).toThrow("negatives not allowed: -2,-5");
+});
