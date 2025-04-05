@@ -1,0 +1,25 @@
+{
+  "name": "string-calculator-tdd",
+  "version": "1.0.0",
+  "description": "This project is a simple implementation of a String Calculator following the principles of **Test-Driven Development (TDD)**.  \r It was created as part of the Incubyte take-home assignment.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "start:dev": "nodemon ./dist/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bhargav00708/string-calculator-tdd.git"
+  },
+  "keywords": [],
+  "author": "Bhargav Vanra<vanrabhargav@gmail.com>",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Bhargav00708/string-calculator-tdd/issues"
+  },
+  "homepage": "https://github.com/Bhargav00708/string-calculator-tdd#readme",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
