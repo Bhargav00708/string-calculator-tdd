@@ -32,3 +32,7 @@ test("should throw an error when negative numbers are present", () => {
 test("should list all negative numbers in the error", () => {
   expect(() => add("1,-2,-5")).toThrow("negatives not allowed: -2,-5");
 });
+
+test("should ignore numbers greater than 1000", () => {
+  expect(add("2,1001")).toBe(2);
+});
