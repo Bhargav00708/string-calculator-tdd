@@ -23,6 +23,7 @@ function add(input) {
 
   const numbers = input.split(delimiters).map(Number);
   const negatives = numbers.filter((n) => n < 0);
+  
   if (negatives.length) {
     throw new Error(`negatives not allowed: ${negatives.join(",")}`);
   }
