@@ -11,3 +11,8 @@ test("should return number when only one number is passed", () => {
 test("should return sum when two numbers are passed", () => {
   expect(add("1,5")).toBe(6);
 });
+
+test("should return sum when multiple numbers are passed", () => {
+  expect(add("1,2,3")).toBe(6);
+  expect(add("1,2,3,4,5")).toBe(15);
+});
